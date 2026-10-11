@@ -24,3 +24,6 @@ This project is part of an Agile assignment. It aims to manage student informati
 
 ## Repository Purpose
 This repository demonstrates version control, commits, branching, merging, and collaboration using Git and GitHub.
+## Student Attendance Feature
+
+The system will allow students to view their attendance records, including classes attended, classes conducted, and attendance percentage.
