@@ -1,0 +1,24 @@
+name: College ERP CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Verify project files
+        run: |
+          echo "Starting College ERP CI pipeline"
+          test -f README.md
+          echo "README file found successfully"
+
+      - name: Build status
+        run: echo "College ERP pipeline completed successfully"
