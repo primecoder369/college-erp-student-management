@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College ERP - Student Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      margin: 0;
+      text-align: center;
+    }
+    header {
+      background: #173b70;
+      color: white;
+      padding: 25px;
+    }
+    main {
+      background: white;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 10px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 6px;
+    }
+    button {
+      background: #173b70;
+      color: white;
+      border: 0;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>College ERP System</h1>
+    <p>Student Management Portal</p>
+  </header>
+
+  <main>
+    <h2>Student Registration</h2>
+    <input id="studentName" placeholder="Enter student name">
+    <input id="rollNumber" placeholder="Enter roll number">
+    <button onclick="registerStudent()">Register Student</button>
+    <p id="result"></p>
+  </main>
+
+  <script>
+    function registerStudent() {
+      const name = document.getElementById("studentName").value.trim();
+      const roll = document.getElementById("rollNumber").value.trim();
+      const result = document.getElementById("result");
+
+      if (!name || !roll) {
+        result.textContent = "Please enter both name and roll number.";
+        return;
+      }
+
+      result.textContent = "Student " + name +
+        " registered successfully. Roll No: " + roll;
+    }
+  </script>
+</body>
+</html>
