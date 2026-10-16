@@ -1,0 +1,46 @@
+
+name: Docker CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        run: |
+          test -f index.html
+          test -f Dockerfile
+          test -f docker-compose.yml
+
+      - name: Build Docker image
+        run: docker build -t college-erp:ci .
+
+      - name: Start application with Docker Compose
+        run: docker compose up -d --build
+
+      - name: Test website response
+        run: |
+          for i in {1..15}; do
+            if curl --fail http://localhost:8080; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker compose logs
+          exit 1
+
+      - name: Stop application
+        if: always()
+        run: docker compose down
